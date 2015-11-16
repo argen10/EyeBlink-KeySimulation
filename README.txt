@@ -1,11 +1,15 @@
 USAGE: run the blink binary
 
-I have written the entire Java code and a portion of the C code. A portion of the C code has been borrowed from "github.com/maz/blinking-angel"
+Authors: 
+1. Alizishaan Khatri
+2. Keshav Sharma
+
+We have written the entire Java code and a portion of the C code. A portion of the C code has been borrowed from "github.com/maz/blinking-angel"
 
 The entirety of the C code is licensed under the GPL.
 The Java code is licensed under the GPL.
 
-All the difficult C code was written by another author. The original contents of the file are below.
+Some of the difficult C code was written by another author. The original contents of the file are below.
 
 Real Time Eye Tracking and Blink Detection
 ==========================================
