@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Blink Eye and Simulate PC Keyboard by exceptionhandle</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Blink Eye and Simulate PC Keyboard</h1>
+        <p class="header">Combining OpenCV Eye blink detect code with the simulation of keyboard</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/exceptionhandle/EyeBlink-KeySimulation/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/exceptionhandle/EyeBlink-KeySimulation/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/exceptionhandle/EyeBlink-KeySimulation">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/exceptionhandle">exceptionhandle</a></p>
+
+
+      </header>
+      <section>
+        <p>USAGE: run the build.sh shell script</p>
+
+<p>Authors: Keshav Sharma &amp; Alizishaan Khatri</p>
+
+<p>Written the Java code and a portion of the C code. A portion of the C code has been borrowed from "github.com/maz/blinking-angel"</p>
+
+<p>The entirety of the C code is licensed under the GPL.
+The Java code is licensed under the GPL.</p>
+
+<h1>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h1>
+
+<p>The system uses the implementation of First in first out queue which is constantly updated by the c code when a series of blinks is detected and an alphanumerical digit is processed from the blinks using hexadecimal encoding format. The java part than takes out the first digit in the queue and prints to the desired location which is pointed by the mouse pointer .</p>
+
+<p>Some portion of the C code was written by author Nash. The original contents of the file are below.
+Author:  Nash
+Real Time Eye Tracking and Blink Detection
+This project implements the algorithm (with small modifications) described in paper:</p>
+
+<p>Real Time Eye Tracking and Blink Detection
+Michael Chau and Margrit Betke
+<a href="http://www.cs.bu.edu/techreports/pdf/2005-012-blink-detection.pdf">http://www.cs.bu.edu/techreports/pdf/2005-012-blink-detection.pdf</a></p>
+
+<p>Overview
+This system automatically locate the user's eye by detecting eye blinks. Motion analysis 
+techniques are used in this stage, followed by online creation of the open eye template. 
+The open eye template is used to locate the user's eye in the subsequent frames with 
+template matching. Blink detection is performed using motion analysis techniques. </p>
+
+<p>Since the operation requires extensive amount of computation, the search region is 
+restricted in a small search window around the user's eye. This method will drastically 
+reduces the computation needed thus making the system running smoothly in real time.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
