@@ -1,12 +1,8 @@
 /**
- * Real Time Eye Tracking and Blink Detection with OpenCV
+ * Real Time Eye Tracking and Eye Blink Detection with Keyboard Simulation with OpenCV
  *
- * @author  Nash <me@nashruddin.com>
+ * @author  Keshav <keshavsh@buffalo.edu> and Alizishan <alizishaan.khatri@gmail.com>
  * @license GPL
- * @website http://nashruddin.com
- *
- * See the tutorial at 
- * http://nashruddin.com/Real_Time_Eye_Tracking_and_Blink_Detection
  */
 
 #include <stdio.h>
