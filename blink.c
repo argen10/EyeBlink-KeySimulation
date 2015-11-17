@@ -1,14 +1,10 @@
 /**
- * Real Time Eye Tracking and Blink Detection with OpenCV
+ * Real Time Eye Tracking and Eye Blink Detection with Keyboard Simulation with OpenCV
  *
- * @author  Nash <me@nashruddin.com>
+ * @author  Keshav <keshavsh@buffalo.edu> and Alizishan <alizishaan.khatri@gmail.com>
  * @license GPL
- * @website http://nashruddin.com
- *
- * See the tutorial at
- * http://nashruddin.com/Real_Time_Eye_Tracking_and_Blink_Detection
  */
-//#include "currentInt.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "cv.h"
@@ -76,20 +72,20 @@ void exit_nicely(char* msg);
  * @return void
  */
 void sendData(int number){
-   static const char* outFile = "temp";
-
-   //open fifo for writing
-   FILE *fp_out = fopen(outFile,"w");
-
-   fprintf(fp_out,"%d",number);
-
-   fclose(fp_out);
+    static const char* outFile = "temp";
+    
+    //open fifo for writing
+    FILE *fp_out = fopen(outFile,"w");
+    
+    fprintf(fp_out,"%d",number);
+    
+    fclose(fp_out);
 }
 
 /**
  * Entry point into the program
  * @param none
- * @return 
+ * @return
  */
 int main(int argc, char** argv)
 {
@@ -108,95 +104,95 @@ int main(int argc, char** argv)
     int java_count=0;
     
     while(1){
-    
-    count=0;
-    
-    while ((key != 'q'))
-    {
-        if(count>=4)
-            break;
         
-        frame = cvQueryFrame(capture);
-        if (!frame)
-            exit_nicely("cannot query frame!");
-        frame->origin = 0;
+        count=0;
         
-        if (stage == STAGE_INIT)
-            window = cvRect(0, 0, frame->width, frame->height);
-        
-        cvCvtColor(frame, gray, CV_BGR2GRAY);
-        
-        nc = get_connected_components(gray, prev, window, &comp);
-        
-        if (stage == STAGE_INIT && is_eye_pair(comp, nc, &eye))
+        while ((key != 'q'))
         {
-            delay_frames(5);
+            if(count>=4)
+                break;
             
-            cvSetImageROI(gray, eye);
-            cvCopy(gray, tpl, NULL);
-            cvResetImageROI(gray);
+            frame = cvQueryFrame(capture);
+            if (!frame)
+                exit_nicely("cannot query frame!");
+            frame->origin = 0;
             
-            stage = STAGE_TRACKING;
-            text_delay = 10;
+            if (stage == STAGE_INIT)
+                window = cvRect(0, 0, frame->width, frame->height);
+            
+            cvCvtColor(frame, gray, CV_BGR2GRAY);
+            
+            nc = get_connected_components(gray, prev, window, &comp);
+            
+            if (stage == STAGE_INIT && is_eye_pair(comp, nc, &eye))
+            {
+                delay_frames(5);
+                
+                cvSetImageROI(gray, eye);
+                cvCopy(gray, tpl, NULL);
+                cvResetImageROI(gray);
+                
+                stage = STAGE_TRACKING;
+                text_delay = 10;
+            }
+            
+            if (stage == STAGE_TRACKING)
+            {
+                found = locate_eye(gray, tpl, &window, &eye);
+                if (!found || key == 'r')
+                    stage = STAGE_INIT;
+                
+                if (is_blink(comp, nc, window, eye)){
+                    value = 1;
+                    text_delay = 20;
+                    DRAW_TEXT(frame, "blink!", text_delay, 1);
+                    //cvWaitKey(30);
+                    //cvShowImage(wnd_name, frame);
+                    //system("/bin/bash ./blinked.sh");
+                }else{
+                    text_delay = 20;
+                    DRAW_TEXT(frame, "No blink!", text_delay, 1);
+                }
+                countLoop ++;
+                if(countLoop>60 || value == 1){
+                    printf("got input blink number : %d \n Binary Value : %d \n", count,value);
+                    ans[count++]=value;
+                    if(i != 3)
+                        printf("Input Next Blink \n");
+                    countLoop = 0;
+                    value = 0;
+                }
+                DRAW_RECTS(frame, diff, window, eye);
+                
+            }
+            
+            cvShowImage(wnd_name, frame);
+            cvShowImage(wnd_debug, diff);
+            prev = (IplImage*)cvClone(gray);
+            key  = cvWaitKey(15);
         }
         
-        if (stage == STAGE_TRACKING)
-        {
-            found = locate_eye(gray, tpl, &window, &eye);
-            if (!found || key == 'r')
-                stage = STAGE_INIT;
-            
-            if (is_blink(comp, nc, window, eye)){
-                value = 1;
-                text_delay = 20;
-                DRAW_TEXT(frame, "blink!", text_delay, 1);
-                //cvWaitKey(30);
-                //cvShowImage(wnd_name, frame);
-                //system("/bin/bash ./blinked.sh");
-            }else{
-                text_delay = 20;
-                DRAW_TEXT(frame, "No blink!", text_delay, 1);
-            }
-            countLoop ++;
-            if(countLoop>60 || value == 1){
-                printf("got input blink number : %d \n Binary Value : %d \n", count,value);
-                ans[count++]=value;
-                if(i != 3)
-                    printf("Input Next Blink \n");
-                countLoop = 0;
-                value = 0;
-            }
-            DRAW_RECTS(frame, diff, window, eye);
-            
-        }
-        
-        cvShowImage(wnd_name, frame);
-        cvShowImage(wnd_debug, diff);
-        prev = (IplImage*)cvClone(gray);
-        key  = cvWaitKey(15);
-    }
-    
-    //Calculate binary equivalent of read value
+        //Calculate binary equivalent of read value
         for(i=0,sum=0;i<4;i++)
         {
             printf("%d\t",ans[i]);
             sum=sum+ans[i]*pow(2,(3-i));
             ans[i]=0;    //// clearing the output array
         }
-    
-    //Display read value on stdout
-    printf("\nDigit read: %d\n",sum);
-    
-    //Write data to FIFO pipe
-    sendData(sum);
-    
-    //Run Java Program 
-    if(java_count==0){
-	system("java stndderr");
         
-    }
-    java_count = 1;
-
+        //Display read value on stdout
+        printf("\nDigit read: %d\n",sum);
+        
+        //Write data to FIFO pipe
+        sendData(sum);
+        
+        //Run Java Program
+        if(java_count==0){
+            system("java Robo");
+            
+        }
+        java_count = 1;
+        
     }
     exit_nicely(NULL);
 }
@@ -532,4 +528,3 @@ exit_nicely(char* msg)
     
     exit(0);
 }
-
