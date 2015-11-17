@@ -1,11 +1,15 @@
-USAGE: run the blink binary and the ruby server and go to http://localhost:4567/
+USAGE: run the blink binary
 
-The images were found on the internet. I wrote the ruby code and the HTML file.
+Authors: 
+1. Alizishaan Khatri
+2. Keshav Sharma
+
+We have written the entire Java code and a portion of the C code. A portion of the C code has been borrowed from "github.com/maz/blinking-angel"
 
 The entirety of the C code is licensed under the GPL.
-The ruby and html files are licensed under the MIT license. A copy of the license is included with both files.
+The Java code is licensed under the GPL.
 
-All the difficult C code was written by another author. The original contents of the file are below.
+Some of the difficult C code was written by another author. The original contents of the file are below.
 
 Real Time Eye Tracking and Blink Detection
 ==========================================
@@ -61,4 +65,3 @@ Usage
 Contact the author
 ==================
 Feel free to contact me@nashruddin.com.
-
