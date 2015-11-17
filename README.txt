@@ -1,8 +1,8 @@
 USAGE: run the blink binary
 
 Authors: 
-1. Alizishaan Khatri
-2. Keshav Sharma
+1. Keshav Sharma
+2. Alizishaan Khatri
 
 We have written the entire Java code and a portion of the C code. A portion of the C code has been borrowed from "github.com/maz/blinking-angel"
 
