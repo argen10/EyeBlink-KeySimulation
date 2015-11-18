@@ -1,44 +1,31 @@
-USAGE: run the blink binary
+Blink Eye and Simulate PC Keyboard
+Combining OpenCV Eye blink detect code with the simulation of keyboard
 
-Authors: 
-1. Alizishaan Khatri
-2. Keshav Sharma
+USAGE: run the build.sh shell script
 
-We have written the entire Java code and a portion of the C code. A portion of the C code has been borrowed from "github.com/maz/blinking-angel"
+Authors: Keshav Sharma & Alizishaan Khatri
 
-The entirety of the C code is licensed under the GPL.
-The Java code is licensed under the GPL.
+Written the Java code and a portion of the C code. A portion of the C code has been borrowed from "github.com/maz/blinking-angel"
 
-Some of the difficult C code was written by another author. The original contents of the file are below.
+The entirety of the C code is licensed under the GPL. The Java code is licensed under the GPL.
 
-Real Time Eye Tracking and Blink Detection
+Overview
+The system uses the implementation of First in first out queue which is constantly updated by the c code when a series of blinks is detected and an alphanumerical digit is processed from the blinks using hexadecimal encoding format. The java part than takes out the first digit in the queue and prints to the desired location which is pointed by the mouse pointer .
+
+A portion of the C code was written by author Nash(me@nashruddin.com.).
+
+Real Time Eye Tracking and Blink Detection 
 ==========================================
+
+Author: Nash Real Time Eye Tracking and Blink Detection 
 
 This project implements the algorithm (with small modifications) described in paper:
 
-Real Time Eye Tracking and Blink Detection
-Michael Chau and Margrit Betke
-http://www.cs.bu.edu/techreports/pdf/2005-012-blink-detection.pdf
+Michael Chau and Margrit Betke http://www.cs.bu.edu/techreports/pdf/2005-012-blink-detection.pdf
 
-Overview
-========
+Overview This system automatically locate the user's eye by detecting eye blinks. Motion analysis techniques are used in this stage, followed by online creation of the open eye template. The open eye template is used to locate the user's eye in the subsequent frames with template matching. Blink detection is performed using motion analysis techniques.
 
-This system is the enhancement of my previous Eye Tracking system, where this system 
-automatically locate the user's eye by detecting eye blinks. Motion analysis 
-techniques are used in this stage, followed by online creation of the open eye template. 
-The open eye template is used to locate the user's eye in the subsequent frames with 
-template matching. Blink detection is performed using motion analysis techniques. 
-
-Since the operation requires extensive amount of computation, the search region is 
-restricted in a small search window around the user's eye. This method will drastically 
-reduces the computation needed thus making the system running smoothly in real time.
-
-Author:  Nashruddin Amin <me@nashruddin.com>
-License: GPL
-Website: http://nashruddin.com
-
-See the complete tutorial at:
-http://nashruddin.com/Real_Time_Eye_Tracking_and_Blink_Detection
+Since the operation requires extensive amount of computation, the search region is restricted in a small search window around the user's eye. This method will drastically reduces the computation needed thus making the system running smoothly in real time.USAGE: run the blink binary
 
 Requirement
 ===========
@@ -57,12 +44,10 @@ Usage
 1. Run the program.
 2. Blink your eyes. You will see 2 rectangles. The green rectangle labels
    the object being tracked (your eye) and the red rectangle is the search window.
-3. Move your head to see the eye tracking.
-4. If you blink, the program will display the text 'blink!' in the window.
-5. Press 'r' to repeat eye detection.
-6. Press 'q' to quit.
-
-Contact the author
-==================
-Feel free to contact me@nashruddin.com.
-
+3. If you blink, the program will display the text 'blink!' in the window.
+4. The tool is set to record binary 1 for atleast a single eye Blink within 30 frames of video captured.
+5. The console will output a single alphanumerical value after 4 * 30 frames.
+6. Point the location of mouse pointer over any application in the pc which can take input.
+7. You can see the desired output formed by the binary input in hexadecimal converted format.
+8. Press 'r' to repeat eye detection.
+9. Press 'q' to quit.
