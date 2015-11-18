@@ -12,10 +12,15 @@ The entirety of the C code is licensed under the GPL. The Java code is licensed 
 Overview
 The system uses the implementation of First in first out queue which is constantly updated by the c code when a series of blinks is detected and an alphanumerical digit is processed from the blinks using hexadecimal encoding format. The java part than takes out the first digit in the queue and prints to the desired location which is pointed by the mouse pointer .
 
-A portion of the C code was written by author Nash(me@nashruddin.com.). 
-The original contents of the file are below. Author: Nash Real Time Eye Tracking and Blink Detection This project implements the algorithm (with small modifications) described in paper:
+A portion of the C code was written by author Nash(me@nashruddin.com.).
 
 Real Time Eye Tracking and Blink Detection 
+==========================================
+
+Author: Nash Real Time Eye Tracking and Blink Detection 
+
+This project implements the algorithm (with small modifications) described in paper:
+
 Michael Chau and Margrit Betke http://www.cs.bu.edu/techreports/pdf/2005-012-blink-detection.pdf
 
 Overview This system automatically locate the user's eye by detecting eye blinks. Motion analysis techniques are used in this stage, followed by online creation of the open eye template. The open eye template is used to locate the user's eye in the subsequent frames with template matching. Blink detection is performed using motion analysis techniques.
