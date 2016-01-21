@@ -1,4 +1,5 @@
 Blink Eye and Simulate PC Keyboard
+==================================
 Combining OpenCV Eye blink detect code with the simulation of keyboard
 
 USAGE: run the build.sh shell script
